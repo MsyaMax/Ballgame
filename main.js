@@ -21,32 +21,52 @@ window.addEventListener('DOMContentLoaded', () => {
             ball.style.top = `${y}px`;
         }
     };
-    createBall(1);
+    createBall(10);
 
-    // animating top balls
+    // animating the balls
     const balls = document.querySelectorAll('.ballstyle')
 
-    let vx = Math.floor((Math.random() - 0.5) * 50);
-    let vh = Math.floor((Math.random() - 0.5) * 50);
 
-    function animate() {
-        // set left proprety 
-        let left = parseInt(getComputedStyle(balls[0]).getPropertyValue('left'));
-        if (left + w >= width || left <= 0) {
-            vx = -vx
-        }
-        left += vx
-        balls[0].style.left = left + 'px';
-        // set top proprety 
-        let top = parseInt(getComputedStyle(balls[0]).getPropertyValue('top'));
-        if (top + h >= height || top <= 0) {
-            vh = -vh
-        }
-        top += vh
-        balls[0].style.top = top + 'px';
 
-        requestAnimationFrame(animate)
+    for (let i = 0; i < balls.length; i++) {
+        animator(i)
     }
-    animate()
+
+    function animator(p) {
+
+        let n = p
+        let vx = Math.floor((Math.random() - 0.5) * 50);
+        let vh = Math.floor((Math.random() - 0.5) * 50);
+
+        function animate() {
+            n
+            // set left proprety 
+            let left = parseInt(getComputedStyle(balls[n]).getPropertyValue('left'));
+            if (left + w >= width || left <= 0) {
+                vx = -vx
+            }
+            left += vx
+            balls[n].style.left = left + 'px';
+            // set top proprety 
+
+            let top = parseInt(getComputedStyle(balls[n]).getPropertyValue('top'));
+            if (top + h >= height || top <= 0) {
+                vh = -vh
+            }
+            top += vh
+            balls[n].style.top = top + 'px';
+
+
+            requestAnimationFrame(animate)
+        }
+        animate()
+    }
+
+
+
+
+
+
+
 
 })
