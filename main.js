@@ -1,6 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
     const w = 35;
     const h = 35;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
     function createBall(n) {
         for (let i = 0; n > i; i++) {
@@ -9,10 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
             ball.classList.add('ballstyle');
             ball.style.width = w + 'px';
             ball.style.height = h + 'px';
-            // valuing top and left properties for our ball 
-            let width = window.innerWidth;
-            let height = window.innerHeight;
 
+
+            // valuing top and left properties for our ball 
             let x = Math.floor(Math.random() * (width - w));
             let y = Math.floor(Math.random() * (height - h));
             document.body.appendChild(ball);
@@ -21,5 +22,31 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
     createBall(1);
+
+    // animating top balls
+    const balls = document.querySelectorAll('.ballstyle')
+
+    let vx = Math.floor((Math.random() - 0.5) * 50);
+    let vh = Math.floor((Math.random() - 0.5) * 50);
+
+    function animate() {
+        // set left proprety 
+        let left = parseInt(getComputedStyle(balls[0]).getPropertyValue('left'));
+        if (left + w >= width || left <= 0) {
+            vx = -vx
+        }
+        left += vx
+        balls[0].style.left = left + 'px';
+        // set top proprety 
+        let top = parseInt(getComputedStyle(balls[0]).getPropertyValue('top'));
+        if (top + h >= height || top <= 0) {
+            vh = -vh
+        }
+        top += vh
+        balls[0].style.top = top + 'px';
+
+        requestAnimationFrame(animate)
+    }
+    animate()
 
 })
