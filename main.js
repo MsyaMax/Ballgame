@@ -1,12 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const w = 35;
-    const h = 35;
+    const w = 30;
+    const h = 30;
     let width = window.innerWidth - 14;
     let height = window.innerHeight - 14;
-
-    function createBall(n) {
+    // creating ball
+    function createBall(n, x, y) {
         for (let i = 0; n > i; i++) {
-            // creating ball
+
             let ball = document.createElement('div');
             ball.classList.add('ballstyle');
             ball.style.width = w + 'px';
@@ -14,29 +14,25 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
             // valuing top and left properties for our ball 
-            let x = Math.floor(Math.random() * (width - w));
-            let y = Math.floor(Math.random() * (height - h));
+            x = (x == undefined) ? Math.floor(Math.random() * (width - w)) : x;
+            y = (y == undefined) ? Math.floor(Math.random() * (height - h)) : y;
             document.body.appendChild(ball);
             ball.style.left = `${x}px`;
             ball.style.top = `${y}px`;
         }
     };
-    createBall(15);
+    createBall(1);
 
     // animating the balls
-    const balls = document.querySelectorAll('.ballstyle')
-
-
+    let balls = document.querySelectorAll('.ballstyle')
 
     for (let i = 0; i < balls.length; i++) {
         animator(i)
     }
 
-    function animator(p) {
-
-        let n = p
-        let vx = Math.floor((Math.random() - 0.5) * 30);
-        let vh = Math.floor((Math.random() - 0.5) * 30);
+    function animator(n) {
+        let vx = Math.floor((Math.random() - 0.5) * 15);
+        let vh = Math.floor((Math.random() - 0.5) * 15);
 
         function animate() {
 
@@ -56,21 +52,16 @@ window.addEventListener('DOMContentLoaded', () => {
             top += vh
             balls[n].style.top = top + 'px';
 
-            if (!isClick) {
-                requestAnimationFrame(animate);
-            }
-
-
+            requestAnimationFrame(animate);
 
         }
         animate()
     }
-})
 
-// check clicking 
-let isClick = false;
-document.addEventListener('click', (event) => {
-    isClick = true;
-    changeAnimate(event.clientX, event.clientY)
-    return isClick;
+    // check clicking
+    document.addEventListener('click', (event) => {
+        createBall(1, event.clientX, event.clientY)
+        balls = document.querySelectorAll('.ballstyle')
+        animator(balls.length - 1)
+    })
 })

@@ -4,14 +4,15 @@
     }
     
     body {
+        cursor: pointer;
         height: 100vh;
         background: rgb(69, 69, 218);
         background: linear-gradient(209deg, rgba(69, 69, 218, 1) 0%, rgba(19, 19, 224, 1) 100%);
     }
     
     .ballstyle {
-        background: rgb(183, 231, 5);
-        background: linear-gradient(209deg, rgba(183, 231, 5, 1) 0%, rgba(244, 255, 0, 1) 100%);
         border-radius: 50%;
+        background: #d9dd13;
+        box-shadow: inset 5px 5px 10px #8b8d0c, inset -5px -5px 10px #ffff1a;
         position: absolute;
     }
