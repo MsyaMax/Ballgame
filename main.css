@@ -5,10 +5,13 @@
     
     body {
         height: 100vh;
+        background: rgb(69, 69, 218);
+        background: linear-gradient(209deg, rgba(69, 69, 218, 1) 0%, rgba(19, 19, 224, 1) 100%);
     }
     
     .ballstyle {
-        background-color: rgb(255, 0, 0);
+        background: rgb(183, 231, 5);
+        background: linear-gradient(209deg, rgba(183, 231, 5, 1) 0%, rgba(244, 255, 0, 1) 100%);
         border-radius: 50%;
         position: absolute;
     }
